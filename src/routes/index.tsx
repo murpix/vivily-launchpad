@@ -2,24 +2,29 @@ import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Leaf, Heart, Layers, CheckCircle2, Loader2 } from "lucide-react";
+import { UserPlus, Users, Home, CheckCircle2, Loader2, ArrowDown } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
-import calmImage from "@/assets/vivily-calm.jpg";
+import communityImage from "@/assets/vivily-community.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vivily — Bienestar, sin fricción" },
+      {
+        title: "Vivily — Encuentra tu compañero ideal para compartir vivienda",
+      },
       {
         name: "description",
         content:
-          "Vivily ordena tus hábitos, respiraciones y pausas en una sola app. Deja tu correo y accede antes que nadie.",
+          "Únete a la lista de espera de Vivily y sé de los primeros en acceder a la app para encontrar compañeros de vivienda compatibles.",
       },
-      { property: "og:title", content: "Vivily — Bienestar, sin fricción" },
+      {
+        property: "og:title",
+        content: "Vivily — Encuentra tu compañero ideal para compartir vivienda",
+      },
       {
         property: "og:description",
-        content: "Tu día con más calma y menos ruido. Únete a la waitlist de Vivily.",
+        content: "Únete a la lista de espera de Vivily y accede antes que nadie.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,24 +40,24 @@ const emailSchema = z
   .email("Ese correo no parece válido")
   .max(255, "El correo es demasiado largo");
 
-const features = [
+const steps = [
   {
-    icon: Leaf,
+    icon: UserPlus,
     bg: "bg-accent",
-    title: "Rituales que encajan",
-    text: "Micro-sesiones de 3 minutos que se adaptan a tu agenda real.",
+    title: "Crea tu perfil",
+    text: "Cuéntanos quién eres, tus rutinas y lo que buscas en una convivencia.",
   },
   {
-    icon: Heart,
+    icon: Users,
     bg: "bg-secondary",
-    title: "Ritmo, no presión",
-    text: "Progreso sin culpa: Vivily celebra los pequeños pasos de cada día.",
+    title: "Encuentra personas compatibles",
+    text: "Conecta con personas que comparten tu ritmo, valores y forma de vivir.",
   },
   {
-    icon: Layers,
+    icon: Home,
     bg: "bg-muted",
-    title: "Todo en un lugar",
-    text: "Hábitos, respiración y pausas reunidos en una superficie serena.",
+    title: "Busca vivienda juntos",
+    text: "Explora opciones, organiza visitas y decide en equipo sin complicaciones.",
   },
 ];
 
@@ -65,6 +70,13 @@ function Logo() {
       <span className="font-display text-lg font-semibold tracking-tight">Vivily</span>
     </div>
   );
+}
+
+function scrollToWaitlist() {
+  const el = document.getElementById("waitlist");
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
 function WaitlistForm() {
@@ -146,7 +158,7 @@ function WaitlistForm() {
           className="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-base font-bold text-primary-foreground transition-transform duration-200 hover:brightness-105 active:scale-[0.97] disabled:opacity-60"
         >
           {loading && <Loader2 className="size-4 animate-spin" aria-hidden />}
-          {loading ? "Guardando…" : "Unirme a la lista"}
+          {loading ? "Guardando…" : "Unirme a la lista de espera"}
         </button>
       </div>
       {error && (
@@ -173,85 +185,140 @@ function Index() {
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 pt-6">
           <Logo />
           <span className="rounded-full bg-card/60 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-primary ring-1 ring-primary/15 backdrop-blur-md">
-            Próximamente
+            Lista de espera
           </span>
         </div>
       </header>
 
       <main className="relative z-20">
-        {/* Hero + waitlist */}
+        {/* Hero */}
         <section className="mx-auto max-w-5xl px-6 pt-10 pb-6 md:pt-20">
-          <div className="grid items-start gap-10 md:grid-cols-2">
+          <div className="grid items-center gap-10 md:grid-cols-2">
             <div>
-              <p className="anim-rise text-sm font-semibold text-primary" style={{ animationDelay: "0.05s" }}>
-                Bienestar, sin fricción
+              <p
+                className="anim-rise text-sm font-semibold text-primary"
+                style={{ animationDelay: "0.05s" }}
+              >
+                Compartir vivienda, sin estrés
               </p>
               <h1
-                className="anim-rise mt-3 max-w-[20ch] font-display text-[2.4rem] leading-[1.05] font-semibold tracking-tight text-balance md:text-6xl"
+                className="anim-rise mt-3 max-w-[18ch] font-display text-[2.4rem] leading-[1.05] font-semibold tracking-tight text-balance md:text-6xl"
                 style={{ animationDelay: "0.15s" }}
               >
-                Tu día con <span className="text-primary italic">más calma</span> y menos ruido.
+                Vivily — Encuentra tu{" "}
+                <span className="text-primary italic">compañero ideal</span> para compartir
+                vivienda.
               </h1>
               <p
                 className="anim-rise mt-4 max-w-[42ch] text-base text-muted-foreground text-pretty md:text-lg"
                 style={{ animationDelay: "0.25s" }}
               >
-                Vivily ordena tus hábitos, respiraciones y pausas en una sola superficie suave
-                para que llegues al fin del día con energía, no con desgaste.
+                Únete a la lista de espera y sé de los primeros en acceder a la app que conecta
+                personas compatibles para vivir juntos.
               </p>
+              <div className="anim-rise mt-6 flex flex-wrap gap-3" style={{ animationDelay: "0.35s" }}>
+                <button
+                  onClick={scrollToWaitlist}
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-base font-bold text-primary-foreground transition-transform duration-200 hover:brightness-105 active:scale-[0.97]"
+                >
+                  Unirme a la lista
+                  <ArrowDown className="size-4" aria-hidden />
+                </button>
+              </div>
             </div>
 
             <div
-              className="anim-rise rounded-[28px] bg-card/60 p-6 shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)] ring-1 ring-border backdrop-blur-xl"
-              style={{ animationDelay: "0.35s" }}
+              className="anim-rise relative"
+              style={{ animationDelay: "0.45s" }}
             >
-              <h2 className="text-sm font-bold">Accede antes que nadie</h2>
+              <img
+                src={communityImage}
+                alt="Grupo de personas de diferentes edades disfrutando juntas en un salón luminoso"
+                width={1024}
+                height={1280}
+                loading="eager"
+                className="aspect-[4/5] w-full rounded-[28px] object-cover ring-1 ring-border shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)]"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Cómo funciona */}
+        <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
+            Cómo funciona Vivily
+          </h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {steps.map((s, i) => (
+              <article
+                key={s.title}
+                className={`rounded-[24px] ${s.bg} p-6 ring-1 ring-border backdrop-blur-md`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="grid size-11 place-items-center rounded-2xl bg-card/60 ring-1 ring-border">
+                    <s.icon className="size-5 text-primary" aria-hidden />
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                    Paso {i + 1}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-display text-lg font-semibold">{s.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground text-pretty">{s.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Waitlist */}
+        <section
+          id="waitlist"
+          className="mx-auto max-w-5xl px-6 pt-12 scroll-mt-24"
+        >
+          <div className="grid items-start gap-8 md:grid-cols-2">
+            <div>
+              <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
+                Accede antes que nadie
+              </h2>
+              <p className="mt-2 text-base text-muted-foreground text-pretty">
+                Déjanos tu correo y te avisamos en cuanto Vivily esté disponible. Los primeros en
+                la lista recibirán acceso prioritario y funciones exclusivas.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                  <span>Acceso anticipado a la app.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                  <span>Noticias y consejos sobre convivencia.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                  <span>Sin spam, solo lo importante.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="rounded-[28px] bg-card/60 p-6 shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)] ring-1 ring-border backdrop-blur-xl">
+              <h3 className="text-sm font-bold">Únete a la waitlist</h3>
               <p className="mt-1 text-[13px] text-muted-foreground text-pretty">
-                Deja tu correo y te avisamos el día del lanzamiento.
+                Completa el formulario y guarda tu lugar.
               </p>
               <WaitlistForm />
             </div>
           </div>
         </section>
 
-        {/* Features */}
-        <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
-          <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
-            Hecho para sentirte mejor
-          </h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {features.map((f) => (
-              <article
-                key={f.title}
-                className={`rounded-[24px] ${f.bg} p-6 ring-1 ring-border backdrop-blur-md`}
-              >
-                <div className="grid size-11 place-items-center rounded-2xl bg-card/60 ring-1 ring-border">
-                  <f.icon className="size-5 text-primary" aria-hidden />
-                </div>
-                <h3 className="mt-4 font-display text-lg font-semibold">{f.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground text-pretty">{f.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* Imagen + testimonio */}
+        {/* Testimonio */}
         <section className="mx-auto max-w-5xl px-6 pt-12">
-          <div className="grid items-center gap-8 md:grid-cols-2">
-            <img
-              src={calmImage}
-              alt="Persona respirando con calma en una habitación luminosa"
-              width={1024}
-              height={1280}
-              loading="lazy"
-              className="aspect-[4/5] w-full rounded-[28px] object-cover ring-1 ring-border"
-            />
+          <div className="rounded-[28px] bg-secondary/40 p-8 ring-1 ring-border backdrop-blur-md md:p-10">
             <figure>
               <blockquote className="font-display text-xl font-medium text-pretty md:text-2xl">
-                “Por primera vez, mi descanso no se siente como una tarea.”
+                “Vivily me devolvió la ilusión de compartir piso: encontré personas con mi mismo
+                ritmo y valores desde el primer día.”
               </blockquote>
-              <figcaption className="mt-3 text-sm text-muted-foreground">
-                Lucía M. — beta tester
+              <figcaption className="mt-4 text-sm text-muted-foreground">
+                Ana R. — beta tester
               </figcaption>
             </figure>
           </div>

@@ -78,17 +78,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Vivily — Bienestar, sin fricción" },
+      { title: "Vivily — Encuentra tu compañero ideal para compartir vivienda" },
       {
         name: "description",
         content:
-          "Vivily ordena tus hábitos, respiraciones y pausas en una sola app. Únete a la lista de espera y accede antes que nadie.",
+          "Vivily conecta personas compatibles para compartir vivienda. Únete a la lista de espera y accede antes que nadie.",
       },
-      { property: "og:title", content: "Vivily — Bienestar, sin fricción" },
+      {
+        property: "og:title",
+        content: "Vivily — Encuentra tu compañero ideal para compartir vivienda",
+      },
       {
         property: "og:description",
         content:
-          "Tu día con más calma y menos ruido. Únete a la waitlist de Vivily.",
+          "Únete a la lista de espera de Vivily y sé de los primeros en acceder a la app.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -119,7 +122,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <HeadContent />
       </head>
