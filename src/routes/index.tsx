@@ -233,14 +233,14 @@ function Index() {
                 className="anim-rise text-sm font-semibold text-primary"
                 style={{ animationDelay: "0.05s" }}
               >
-                Compartir vivienda, sin estrés
+                Vivienda compartida para familias monoparentales
               </p>
               <h1
                 className="anim-rise mt-3 max-w-[18ch] font-display text-[2.4rem] leading-[1.05] font-semibold tracking-tight text-balance md:text-6xl"
                 style={{ animationDelay: "0.15s" }}
               >
-                Vivily — Encuentra tu{" "}
-                <span className="text-primary italic">compañero ideal</span> para compartir
+                Vivily — Encuentra otra{" "}
+                <span className="text-primary italic">familia monoparental</span> para compartir
                 vivienda.
               </h1>
               <p
@@ -248,7 +248,7 @@ function Index() {
                 style={{ animationDelay: "0.25s" }}
               >
                 Únete a la lista de espera y sé de los primeros en acceder a la app que conecta
-                personas compatibles para vivir juntos.
+                familias monoparentales compatibles para vivir juntas.
               </p>
               <div className="anim-rise mt-6 flex flex-wrap gap-3" style={{ animationDelay: "0.35s" }}>
                 <button
