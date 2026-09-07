@@ -22,16 +22,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Vivily — Encuentra tu compañero ideal para compartir vivienda",
+        title: "Vivily — Vivienda compartida pensada para familias monoparentales",
       },
       {
         name: "description",
         content:
-          "Únete a la lista de espera de Vivily y sé de los primeros en acceder a la app para encontrar compañeros de vivienda compatibles.",
+          "Únete a la lista de espera de Vivily y sé de los primeros en acceder a la app que conecta familias monoparentales para compartir vivienda de forma segura y compatible.",
       },
       {
         property: "og:title",
-        content: "Vivily — Encuentra tu compañero ideal para compartir vivienda",
+        content: "Vivily — Vivienda compartida pensada para familias monoparentales",
       },
       {
         property: "og:description",
