@@ -72,6 +72,33 @@ const steps = [
   },
 ];
 
+const benefits = [
+  {
+    icon: ShieldCheck,
+    bg: "bg-accent",
+    title: "Seguridad y verificación",
+    text: "Perfiles verificados para que compartas tu hogar con tranquilidad.",
+  },
+  {
+    icon: Sparkles,
+    bg: "bg-secondary",
+    title: "Matching inteligente",
+    text: "Nuestro algoritmo te sugiere compañeros compatibles con tu estilo de vida.",
+  },
+  {
+    icon: HeartHandshake,
+    bg: "bg-muted",
+    title: "Comunidad de apoyo",
+    text: "Forma parte de una red de personas que valoran el respeto y la convivencia.",
+  },
+  {
+    icon: Wallet,
+    bg: "bg-accent",
+    title: "Ahorro compartiendo vivienda",
+    text: "Reduce gastos y accede a mejores hogares repartiendo los costes entre todos.",
+  },
+];
+
 function Logo() {
   return (
     <div className="flex items-center gap-2">
