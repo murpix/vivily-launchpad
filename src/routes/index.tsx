@@ -97,16 +97,13 @@ function WaitlistForm() {
 
     setLoading(true);
     const { error: dbError } = await supabase
-      .from("waitlist")
+      .from("waitlist_emails")
       .insert({ email: parsed.data.toLowerCase() });
     setLoading(false);
 
     if (dbError) {
       if (dbError.code === "23505") {
-        setDone(true);
-        toast.info("Este correo ya está en la lista", {
-          description: "Te avisaremos cuando lancemos Vivily.",
-        });
+        setError("Este correo ya está registrado.");
         return;
       }
       toast.error("No pudimos guardar tu correo", {
@@ -116,9 +113,6 @@ function WaitlistForm() {
     }
 
     setDone(true);
-    toast.success("¡Estás dentro!", {
-      description: "Te avisaremos el día del lanzamiento.",
-    });
   }
 
   if (done) {
@@ -126,9 +120,11 @@ function WaitlistForm() {
       <div className="mt-4 flex items-center gap-3 rounded-2xl bg-accent p-4 ring-1 ring-primary/15">
         <CheckCircle2 className="size-6 shrink-0 text-primary" aria-hidden />
         <div>
-          <p className="font-semibold text-accent-foreground">¡Listo! Ya estás en la lista.</p>
+          <p className="font-semibold text-accent-foreground">
+            ¡Gracias! Te avisaremos cuando Vivily esté disponible.
+          </p>
           <p className="text-[13px] text-muted-foreground">
-            Te escribiremos a {email.toLowerCase()} cuando abramos puertas.
+            Te escribiremos a {email.toLowerCase()}.
           </p>
         </div>
       </div>
