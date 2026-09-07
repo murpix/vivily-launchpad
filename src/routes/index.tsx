@@ -303,6 +303,27 @@ function Index() {
           </div>
         </section>
 
+        {/* Beneficios */}
+        <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
+            Beneficios de Vivily
+          </h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {benefits.map((b) => (
+              <article
+                key={b.title}
+                className={`rounded-[24px] ${b.bg} p-6 ring-1 ring-border backdrop-blur-md`}
+              >
+                <div className="grid size-11 place-items-center rounded-2xl bg-card/60 ring-1 ring-border">
+                  <b.icon className="size-5 text-primary" aria-hidden />
+                </div>
+                <h3 className="mt-4 font-display text-lg font-semibold">{b.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground text-pretty">{b.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         {/* Waitlist */}
         <section
           id="waitlist"
