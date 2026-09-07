@@ -22,16 +22,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Vivily — Encuentra tu compañero ideal para compartir vivienda",
+        title: "Vivily — Vivienda compartida pensada para familias monoparentales",
       },
       {
         name: "description",
         content:
-          "Únete a la lista de espera de Vivily y sé de los primeros en acceder a la app para encontrar compañeros de vivienda compatibles.",
+          "Únete a la lista de espera de Vivily y sé de los primeros en acceder a la app que conecta familias monoparentales para compartir vivienda de forma segura y compatible.",
       },
       {
         property: "og:title",
-        content: "Vivily — Encuentra tu compañero ideal para compartir vivienda",
+        content: "Vivily — Vivienda compartida pensada para familias monoparentales",
       },
       {
         property: "og:description",
@@ -55,20 +55,20 @@ const steps = [
   {
     icon: UserPlus,
     bg: "bg-accent",
-    title: "Crea tu perfil",
-    text: "Cuéntanos quién eres, tus rutinas y lo que buscas en una convivencia.",
+    title: "Crea tu perfil familiar",
+    text: "Cuéntanos sobre tu familia, rutinas y qué buscáis en una convivencia con otra familia monoparental.",
   },
   {
     icon: Users,
     bg: "bg-secondary",
-    title: "Encuentra personas compatibles",
-    text: "Conecta con personas que comparten tu ritmo, valores y forma de vivir.",
+    title: "Encuentra familias compatibles",
+    text: "Conecta con otras familias monoparentales que comparten tus valores, ritmo y forma de crianza.",
   },
   {
     icon: Home,
     bg: "bg-muted",
-    title: "Busca vivienda juntos",
-    text: "Explora opciones, organiza visitas y decide en equipo sin complicaciones.",
+    title: "Busca vivienda juntas",
+    text: "Explora hogares, organiza visitas y decide en equipo con otra familia que entienda tu día a día.",
   },
 ];
 
@@ -77,25 +77,25 @@ const benefits = [
     icon: ShieldCheck,
     bg: "bg-accent",
     title: "Seguridad y verificación",
-    text: "Perfiles verificados para que compartas tu hogar con tranquilidad.",
+    text: "Perfiles y antecedentes verificados para que compartas tu hogar con otra familia con confianza.",
   },
   {
     icon: Sparkles,
     bg: "bg-secondary",
-    title: "Matching inteligente",
-    text: "Nuestro algoritmo te sugiere compañeros compatibles con tu estilo de vida.",
+    title: "Matching pensado para familias",
+    text: "Nuestro algoritmo conecta familias monoparentales compatibles en edades, valores y estilo de vida.",
   },
   {
     icon: HeartHandshake,
     bg: "bg-muted",
     title: "Comunidad de apoyo",
-    text: "Forma parte de una red de personas que valoran el respeto y la convivencia.",
+    text: "Forma parte de una red de familias monoparentales que se apoyan, comparten y cuidan entre sí.",
   },
   {
     icon: Wallet,
     bg: "bg-accent",
     title: "Ahorro compartiendo vivienda",
-    text: "Reduce gastos y accede a mejores hogares repartiendo los costes entre todos.",
+    text: "Reduce gastos y accede a mejores hogares repartiendo alquiler, servicios y responsabilidades.",
   },
 ];
 
@@ -233,14 +233,14 @@ function Index() {
                 className="anim-rise text-sm font-semibold text-primary"
                 style={{ animationDelay: "0.05s" }}
               >
-                Compartir vivienda, sin estrés
+                Vivienda compartida para familias monoparentales
               </p>
               <h1
                 className="anim-rise mt-3 max-w-[18ch] font-display text-[2.4rem] leading-[1.05] font-semibold tracking-tight text-balance md:text-6xl"
                 style={{ animationDelay: "0.15s" }}
               >
-                Vivily — Encuentra tu{" "}
-                <span className="text-primary italic">compañero ideal</span> para compartir
+                Vivily — Encuentra otra{" "}
+                <span className="text-primary italic">familia monoparental</span> para compartir
                 vivienda.
               </h1>
               <p
@@ -248,7 +248,7 @@ function Index() {
                 style={{ animationDelay: "0.25s" }}
               >
                 Únete a la lista de espera y sé de los primeros en acceder a la app que conecta
-                personas compatibles para vivir juntos.
+                familias monoparentales compatibles para vivir juntas.
               </p>
               <div className="anim-rise mt-6 flex flex-wrap gap-3" style={{ animationDelay: "0.35s" }}>
                 <button
@@ -335,8 +335,9 @@ function Index() {
                 Accede antes que nadie
               </h2>
               <p className="mt-2 text-base text-muted-foreground text-pretty">
-                Déjanos tu correo y te avisamos en cuanto Vivily esté disponible. Los primeros en
-                la lista recibirán acceso prioritario y funciones exclusivas.
+                Déjanos tu correo y te avisamos en cuanto Vivily esté disponible para familias
+                monoparentales. Los primeros en la lista recibirán acceso prioritario y funciones
+                exclusivas.
               </p>
               <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
@@ -345,7 +346,7 @@ function Index() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
-                  <span>Noticias y consejos sobre convivencia.</span>
+                  <span>Consejos y recursos para familias monoparentales.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
@@ -369,11 +370,11 @@ function Index() {
           <div className="rounded-[28px] bg-secondary/40 p-8 ring-1 ring-border backdrop-blur-md md:p-10">
             <figure>
               <blockquote className="font-display text-xl font-medium text-pretty md:text-2xl">
-                “Vivily me devolvió la ilusión de compartir piso: encontré personas con mi mismo
-                ritmo y valores desde el primer día.”
+                “Como madre soltera, Vivily me abrió la puerta a compartir hogar con otra familia
+                monoparental: más apoyo, menos gastos y una red de confianza para mis hijos.”
               </blockquote>
               <figcaption className="mt-4 text-sm text-muted-foreground">
-                Ana R. — beta tester
+                Ana R. — madre soltera y beta tester
               </figcaption>
             </figure>
           </div>
