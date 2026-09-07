@@ -335,8 +335,9 @@ function Index() {
                 Accede antes que nadie
               </h2>
               <p className="mt-2 text-base text-muted-foreground text-pretty">
-                Déjanos tu correo y te avisamos en cuanto Vivily esté disponible. Los primeros en
-                la lista recibirán acceso prioritario y funciones exclusivas.
+                Déjanos tu correo y te avisamos en cuanto Vivily esté disponible para familias
+                monoparentales. Los primeros en la lista recibirán acceso prioritario y funciones
+                exclusivas.
               </p>
               <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
@@ -345,7 +346,7 @@ function Index() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
-                  <span>Noticias y consejos sobre convivencia.</span>
+                  <span>Consejos y recursos para familias monoparentales.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
