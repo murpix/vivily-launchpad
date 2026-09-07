@@ -2,7 +2,18 @@ import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { toast } from "sonner";
-import { UserPlus, Users, Home, CheckCircle2, Loader2, ArrowDown } from "lucide-react";
+import {
+  UserPlus,
+  Users,
+  Home,
+  ShieldCheck,
+  Sparkles,
+  HeartHandshake,
+  Wallet,
+  CheckCircle2,
+  Loader2,
+  ArrowDown,
+} from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
 import communityImage from "@/assets/vivily-community.jpg";
@@ -58,6 +69,33 @@ const steps = [
     bg: "bg-muted",
     title: "Busca vivienda juntos",
     text: "Explora opciones, organiza visitas y decide en equipo sin complicaciones.",
+  },
+];
+
+const benefits = [
+  {
+    icon: ShieldCheck,
+    bg: "bg-accent",
+    title: "Seguridad y verificación",
+    text: "Perfiles verificados para que compartas tu hogar con tranquilidad.",
+  },
+  {
+    icon: Sparkles,
+    bg: "bg-secondary",
+    title: "Matching inteligente",
+    text: "Nuestro algoritmo te sugiere compañeros compatibles con tu estilo de vida.",
+  },
+  {
+    icon: HeartHandshake,
+    bg: "bg-muted",
+    title: "Comunidad de apoyo",
+    text: "Forma parte de una red de personas que valoran el respeto y la convivencia.",
+  },
+  {
+    icon: Wallet,
+    bg: "bg-accent",
+    title: "Ahorro compartiendo vivienda",
+    text: "Reduce gastos y accede a mejores hogares repartiendo los costes entre todos.",
   },
 ];
 
@@ -260,6 +298,27 @@ function Index() {
                 </div>
                 <h3 className="mt-4 font-display text-lg font-semibold">{s.title}</h3>
                 <p className="mt-1 text-sm text-muted-foreground text-pretty">{s.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Beneficios */}
+        <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
+            Beneficios de Vivily
+          </h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {benefits.map((b) => (
+              <article
+                key={b.title}
+                className={`rounded-[24px] ${b.bg} p-6 ring-1 ring-border backdrop-blur-md`}
+              >
+                <div className="grid size-11 place-items-center rounded-2xl bg-card/60 ring-1 ring-border">
+                  <b.icon className="size-5 text-primary" aria-hidden />
+                </div>
+                <h3 className="mt-4 font-display text-lg font-semibold">{b.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground text-pretty">{b.text}</p>
               </article>
             ))}
           </div>
