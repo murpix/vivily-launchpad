@@ -55,20 +55,20 @@ const steps = [
   {
     icon: UserPlus,
     bg: "bg-accent",
-    title: "Crea tu perfil",
-    text: "Cuéntanos quién eres, tus rutinas y lo que buscas en una convivencia.",
+    title: "Crea tu perfil familiar",
+    text: "Cuéntanos sobre tu familia, rutinas y qué buscáis en una convivencia con otra familia monoparental.",
   },
   {
     icon: Users,
     bg: "bg-secondary",
-    title: "Encuentra personas compatibles",
-    text: "Conecta con personas que comparten tu ritmo, valores y forma de vivir.",
+    title: "Encuentra familias compatibles",
+    text: "Conecta con otras familias monoparentales que comparten tus valores, ritmo y forma de crianza.",
   },
   {
     icon: Home,
     bg: "bg-muted",
-    title: "Busca vivienda juntos",
-    text: "Explora opciones, organiza visitas y decide en equipo sin complicaciones.",
+    title: "Busca vivienda juntas",
+    text: "Explora hogares, organiza visitas y decide en equipo con otra familia que entienda tu día a día.",
   },
 ];
 
@@ -77,25 +77,25 @@ const benefits = [
     icon: ShieldCheck,
     bg: "bg-accent",
     title: "Seguridad y verificación",
-    text: "Perfiles verificados para que compartas tu hogar con tranquilidad.",
+    text: "Perfiles y antecedentes verificados para que compartas tu hogar con otra familia con confianza.",
   },
   {
     icon: Sparkles,
     bg: "bg-secondary",
-    title: "Matching inteligente",
-    text: "Nuestro algoritmo te sugiere compañeros compatibles con tu estilo de vida.",
+    title: "Matching pensado para familias",
+    text: "Nuestro algoritmo conecta familias monoparentales compatibles en edades, valores y estilo de vida.",
   },
   {
     icon: HeartHandshake,
     bg: "bg-muted",
     title: "Comunidad de apoyo",
-    text: "Forma parte de una red de personas que valoran el respeto y la convivencia.",
+    text: "Forma parte de una red de familias monoparentales que se apoyan, comparten y cuidan entre sí.",
   },
   {
     icon: Wallet,
     bg: "bg-accent",
     title: "Ahorro compartiendo vivienda",
-    text: "Reduce gastos y accede a mejores hogares repartiendo los costes entre todos.",
+    text: "Reduce gastos y accede a mejores hogares repartiendo alquiler, servicios y responsabilidades.",
   },
 ];
 
