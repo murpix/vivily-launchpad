@@ -2,7 +2,18 @@ import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { toast } from "sonner";
-import { UserPlus, Users, Home, CheckCircle2, Loader2, ArrowDown } from "lucide-react";
+import {
+  UserPlus,
+  Users,
+  Home,
+  ShieldCheck,
+  Sparkles,
+  HeartHandshake,
+  Wallet,
+  CheckCircle2,
+  Loader2,
+  ArrowDown,
+} from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
 import communityImage from "@/assets/vivily-community.jpg";
