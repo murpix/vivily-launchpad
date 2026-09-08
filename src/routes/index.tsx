@@ -1,7 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { z } from "zod";
-import { toast } from "sonner";
+import { useServerFn } from "@tanstack/react-start";
 import {
   UserPlus,
   Users,
@@ -15,7 +14,7 @@ import {
   ArrowDown,
 } from "lucide-react";
 
-import { supabase } from "@/integrations/supabase/client";
+import { joinWaitlist } from "@/lib/waitlist.functions";
 import communityImage from "@/assets/vivily-community.jpg";
 
 export const Route = createFileRoute("/")({
