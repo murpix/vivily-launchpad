@@ -1,7 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { z } from "zod";
-import { toast } from "sonner";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import {
   UserPlus,
   Users,
@@ -15,7 +14,7 @@ import {
   ArrowDown,
 } from "lucide-react";
 
-import { supabase } from "@/integrations/supabase/client";
+import { joinWaitlist } from "@/lib/waitlist.functions";
 import communityImage from "@/assets/vivily-community.jpg";
 
 export const Route = createFileRoute("/")({
@@ -43,13 +42,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const emailSchema = z
-  .string()
-  .trim()
-  .min(1, "Escribe tu correo electrónico")
-  .email("Ese correo no parece válido")
-  .max(255, "El correo es demasiado largo");
 
 const steps = [
   {
@@ -119,34 +111,22 @@ function scrollToWaitlist() {
 
 function WaitlistForm() {
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const submit = useServerFn(joinWaitlist);
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
-
-    const parsed = emailSchema.safeParse(email);
-    if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Correo no válido");
-      return;
-    }
-
     setLoading(true);
-    const { error: dbError } = await supabase
-      .from("waitlist_emails")
-      .insert({ email: parsed.data.toLowerCase() });
+
+    const result = await submit({ data: { email, website: honeypot } });
     setLoading(false);
 
-    if (dbError) {
-      if (dbError.code === "23505") {
-        setError("Este correo ya está registrado.");
-        return;
-      }
-      toast.error("No pudimos guardar tu correo", {
-        description: "Inténtalo de nuevo en unos segundos.",
-      });
+    if (!result.ok) {
+      setError(result.error ?? "No pudimos guardar tu correo. Inténtalo de nuevo.");
       return;
     }
 
@@ -185,6 +165,18 @@ function WaitlistForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="tu@correo.com"
           className="w-full rounded-full bg-card px-5 py-3.5 text-base text-foreground ring-1 ring-border outline-none transition-shadow placeholder:text-muted-foreground/70 focus:ring-2 focus:ring-ring"
+        />
+        {/* Honeypot: hidden from real users, bots often fill this field. */}
+        <input
+          id="website"
+          name="website"
+          type="text"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden
+          className="absolute h-0 w-0 opacity-0"
         />
         <button
           type="submit"
@@ -382,8 +374,16 @@ function Index() {
       </main>
 
       <footer className="relative z-20 mx-auto max-w-5xl px-6 pt-14 pb-10">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
           <Logo />
+          <div className="flex items-center gap-6 text-sm text-muted-foreground">
+            <Link to="/" className="hover:text-foreground">
+              Inicio
+            </Link>
+            <Link to="/privacy" className="hover:text-foreground">
+              Privacidad
+            </Link>
+          </div>
           <span className="text-[11px] text-muted-foreground">© 2026 Vivily</span>
         </div>
       </footer>
