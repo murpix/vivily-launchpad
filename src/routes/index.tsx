@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import {
@@ -15,7 +15,10 @@ import {
 } from "lucide-react";
 
 import { joinWaitlist } from "@/lib/waitlist.functions";
-import communityImage from "@/assets/vivily-community.jpg";
+import carouselImage1 from "@/assets/vivily-carousel-1.jpg";
+import carouselImage2 from "@/assets/vivily-carousel-2.jpg";
+import carouselImage3 from "@/assets/vivily-carousel-3.jpg";
+import carouselImage4 from "@/assets/vivily-carousel-4.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
