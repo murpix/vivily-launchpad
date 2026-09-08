@@ -111,34 +111,22 @@ function scrollToWaitlist() {
 
 function WaitlistForm() {
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const submit = useServerFn(joinWaitlist);
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
-
-    const parsed = emailSchema.safeParse(email);
-    if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Correo no válido");
-      return;
-    }
-
     setLoading(true);
-    const { error: dbError } = await supabase
-      .from("waitlist_emails")
-      .insert({ email: parsed.data.toLowerCase() });
+
+    const result = await submit({ data: { email, website: honeypot } });
     setLoading(false);
 
-    if (dbError) {
-      if (dbError.code === "23505") {
-        setError("Este correo ya está registrado.");
-        return;
-      }
-      toast.error("No pudimos guardar tu correo", {
-        description: "Inténtalo de nuevo en unos segundos.",
-      });
+    if (!result.ok) {
+      setError(result.error ?? "No pudimos guardar tu correo. Inténtalo de nuevo.");
       return;
     }
 
@@ -177,6 +165,18 @@ function WaitlistForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="tu@correo.com"
           className="w-full rounded-full bg-card px-5 py-3.5 text-base text-foreground ring-1 ring-border outline-none transition-shadow placeholder:text-muted-foreground/70 focus:ring-2 focus:ring-ring"
+        />
+        {/* Honeypot: hidden from real users, bots often fill this field. */}
+        <input
+          id="website"
+          name="website"
+          type="text"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden
+          className="absolute h-0 w-0 opacity-0"
         />
         <button
           type="submit"
