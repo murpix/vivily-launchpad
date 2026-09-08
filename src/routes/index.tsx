@@ -382,8 +382,16 @@ function Index() {
       </main>
 
       <footer className="relative z-20 mx-auto max-w-5xl px-6 pt-14 pb-10">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
           <Logo />
+          <div className="flex items-center gap-6 text-sm text-muted-foreground">
+            <Link to="/" className="hover:text-foreground">
+              Inicio
+            </Link>
+            <Link to="/privacy" className="hover:text-foreground">
+              Privacidad
+            </Link>
+          </div>
           <span className="text-[11px] text-muted-foreground">© 2026 Vivily</span>
         </div>
       </footer>
