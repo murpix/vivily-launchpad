@@ -43,13 +43,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const emailSchema = z
-  .string()
-  .trim()
-  .min(1, "Escribe tu correo electrónico")
-  .email("Ese correo no parece válido")
-  .max(255, "El correo es demasiado largo");
-
 const steps = [
   {
     icon: UserPlus,
