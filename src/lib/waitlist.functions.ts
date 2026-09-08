@@ -6,19 +6,31 @@ const MAX_ATTEMPTS_PER_WINDOW = 5;
 const WINDOW_MINUTES = 15;
 
 export const joinWaitlist = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => joinWaitlistInputSchema.parse(data))
+  .inputValidator((data: unknown) => {
+    // Accept the raw shape so the handler can return friendly validation errors.
+    if (typeof data !== "object" || data === null) throw new Error("Invalid input");
+    const { email, website } = data as Record<string, unknown>;
+    return { email: String(email ?? ""), website: String(website ?? "") };
+  })
   .handler(async ({ data }) => {
+    const parsed = joinWaitlistInputSchema.safeParse(data);
+    if (!parsed.success) {
+      const issue = parsed.error.issues[0];
+      return { ok: false, error: issue?.message ?? "Correo no válido" };
+    }
+
+    const { email: rawEmail, website } = parsed.data;
     const request = getRequest();
     const clientIp =
       request?.headers.get("cf-connecting-ip") ??
       request?.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
       "unknown";
 
-    if (data.website && data.website.trim().length > 0) {
+    if (website && website.trim().length > 0) {
       return { ok: false, error: "No pudimos procesar tu solicitud." };
     }
 
-    const email = normalizeEmail(data.email);
+    const email = normalizeEmail(rawEmail);
 
     if (isDisposableEmail(email)) {
       return { ok: false, error: "No permitimos correos temporales. Usa tu correo personal." };
