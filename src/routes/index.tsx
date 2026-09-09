@@ -112,6 +112,70 @@ function scrollToWaitlist() {
   }
 }
 
+const carouselImages = [
+  {
+    src: carouselImage1,
+    alt: "Madre soltera riendo con sus dos hijos en el sofá de casa",
+  },
+  {
+    src: carouselImage2,
+    alt: "Dos familias monoparentales compartiendo una comida en una cocina luminosa",
+  },
+  {
+    src: carouselImage3,
+    alt: "Padre soltero jugando con su hija pequeña en el salón",
+  },
+  {
+    src: carouselImage4,
+    alt: "Madres monoparentales ayudando a sus hijos con los deberes juntas",
+  },
+];
+
+function ImageCarousel() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % carouselImages.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="anim-rise relative w-full" style={{ animationDelay: "0.45s" }}>
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[28px] ring-1 ring-border shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)]">
+        {carouselImages.map((img, i) => (
+          <img
+            key={img.alt}
+            src={img.src}
+            alt={img.alt}
+            width={1024}
+            height={1280}
+            loading={i === 0 ? "eager" : "lazy"}
+            className={`absolute inset-0 size-full object-cover transition-opacity duration-1000 ease-in-out ${
+              i === index ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+      </div>
+      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+        {carouselImages.map((img, i) => (
+          <button
+            key={img.alt}
+            type="button"
+            onClick={() => setIndex(i)}
+            aria-label={`Ver imagen ${i + 1} de ${carouselImages.length}`}
+            aria-current={i === index}
+            className={`size-2.5 rounded-full transition-colors ${
+              i === index ? "bg-primary" : "bg-white/70 hover:bg-white"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
