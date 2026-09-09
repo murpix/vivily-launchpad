@@ -320,19 +320,7 @@ function Index() {
               </div>
             </div>
 
-            <div
-              className="anim-rise relative"
-              style={{ animationDelay: "0.45s" }}
-            >
-              <img
-                src={communityImage}
-                alt="Grupo de personas de diferentes edades disfrutando juntas en un salón luminoso"
-                width={1024}
-                height={1280}
-                loading="eager"
-                className="aspect-[4/5] w-full rounded-[28px] object-cover ring-1 ring-border shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)]"
-              />
-            </div>
+            <ImageCarousel />
           </div>
         </section>
 
