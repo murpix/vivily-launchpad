@@ -1,31 +1,30 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/privacy")({
+export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Política de privacidad — Vivily" },
+      { title: "Términos y condiciones — Vivily" },
       {
         name: "description",
         content:
-          "Política de privacidad de Vivily: cómo recogemos, usamos y protegemos los datos de la lista de espera.",
+          "Términos y condiciones de uso de Vivily y de la lista de espera.",
       },
       {
         property: "og:title",
-        content: "Política de privacidad — Vivily",
+        content: "Términos y condiciones — Vivily",
       },
       {
         property: "og:description",
-        content:
-          "Cómo usamos y protegemos los datos de la waitlist de Vivily.",
+        content: "Condiciones de uso de Vivily y la lista de espera.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: PrivacyPage,
+  component: TermsPage,
 });
 
-function PrivacyPage() {
+function TermsPage() {
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-background text-foreground">
       <div className="blob pointer-events-none absolute -top-24 -left-16 size-72 rounded-full bg-sky-soft blur-3xl" />
@@ -42,87 +41,92 @@ function PrivacyPage() {
 
       <main className="relative z-20 mx-auto max-w-3xl px-6 pt-10 pb-16 md:pt-16">
         <h1 className="font-display text-3xl font-semibold tracking-tight text-balance md:text-4xl">
-          Política de privacidad
+          Términos y condiciones
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Última actualización: 7 de septiembre de 2026.
+          Última actualización: 9 de septiembre de 2026.
         </p>
 
         <div className="mt-8 space-y-8 text-base leading-relaxed text-foreground">
           <section>
-            <h2 className="font-display text-xl font-semibold">1. Responsable del tratamiento</h2>
+            <h2 className="font-display text-xl font-semibold">1. ¿Qué es Vivily?</h2>
             <p className="mt-2 text-muted-foreground">
-              Vivily es responsable del tratamiento de los datos personales recogidos a través de
-              esta página web y de la lista de espera.
+              Vivily es una plataforma digital que facilita el encuentro entre familias
+              monoparentales interesadas en compartir vivienda. No somos una inmobiliaria, ni
+              gestionamos alquileres, ni garantizamos el acceso a una vivienda concreta.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-semibold">2. Datos que recogemos</h2>
+            <h2 className="font-display text-xl font-semibold">2. Servicio gratuito y libre acceso</h2>
             <p className="mt-2 text-muted-foreground">
-              En la waitlist únicamente recogemos tu dirección de correo electrónico. No solicitamos
-              nombre, dirección postal, documento de identidad ni ningún otro dato personal para
-              unirte a la lista.
+              Unirse a la lista de espera y usar las funciones principales de Vivily será
+              gratuito. El acceso será libre para las familias monoparentales que cumplan los
+              requisitos de verificación y convivencia de la plataforma.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-semibold">3. Finalidad del tratamiento</h2>
+            <h2 className="font-display text-xl font-semibold">3. Público objetivo</h2>
             <p className="mt-2 text-muted-foreground">
-              Usamos tu correo electrónico exclusivamente para:
-            </p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-muted-foreground">
-              <li>Avistarte cuando Vivily esté disponible.</li>
-              <li>Enviarte actualizaciones sobre el lanzamiento y funciones exclusivas.</li>
-              <li>Compartir consejos y recursos útiles para familias monoparentales.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="font-display text-xl font-semibold">4. Base jurídica</h2>
-            <p className="mt-2 text-muted-foreground">
-              El tratamiento se basa en tu consentimiento, que nos das al introducir tu correo y
-              pulsar “Unirme a la lista de espera”. Puedes retirarlo en cualquier momento.
+              En esta primera fase, Vivily está pensada para familias monoparentales. Hemos
+              elegido este sector porque es el que más urge de soluciones habitacionales
+              compartidas y de apoyo mutuo. Con el tiempo ampliaremos la app a otros
+              perfiles y sectores que también busquen compartir vivienda de forma segura.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-semibold">5. Conservación</h2>
+            <h2 className="font-display text-xl font-semibold">4. No garantizamos una vivienda</h2>
             <p className="mt-2 text-muted-foreground">
-              Conservamos tu correo mientras Vivily esté en fase de lista de espera y, posteriormente,
-              hasta que nos solicites su eliminación o dejes de usar la app.
+              Vivily no asegura que encontrarás una vivienda. Somos un medio que te facilita
+              conocer a otra familia monoparental que está en tu misma situación y busca los
+              mismos intereses. Compartir piso entre dos personas o familias puede facilitar el
+              acceso a una vivienda, pero la búsqueda, la decisión final y cualquier contrato
+              son responsabilidad de las partes.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-semibold">6. Seguridad</h2>
+            <h2 className="font-display text-xl font-semibold">5. Ventajas de unirse antes</h2>
             <p className="mt-2 text-muted-foreground">
-              Tu correo se almacena en nuestra base de datos con acceso restringido y protegido por
-              medidas técnicas y organizativas. Solo el equipo de Vivily puede consultarlo para los
-              fines indicados.
+              Las primeras personas que confíen en Vivily serán las primeras en acceder a las
+              novedades que implementemos y contarán con soporte prioritario durante el
+              lanzamiento y las fases iniciales.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-semibold">7. Tus derechos</h2>
+            <h2 className="font-display text-xl font-semibold">6. Uso responsable</h2>
             <p className="mt-2 text-muted-foreground">
-              Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición,
-              limitación del tratamiento y portabilidad escribiéndonos a nuestro correo de contacto.
+              Al usar Vivily te comprometes a proporcionar información veraz, respetar a las
+              demás familias y no utilizar la plataforma para fines ilegales, abusivos o
+              comerciales no autorizados.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-xl font-semibold">8. Cambios en esta política</h2>
+            <h2 className="font-display text-xl font-semibold">7. Verificación y seguridad</h2>
             <p className="mt-2 text-muted-foreground">
-              Podemos actualizar esta política para adaptarla a cambios legales o en nuestros
-              servicios. Te avisaremos si los cambios son significativos.
+              Implementaremos procesos de verificación para aumentar la confianza entre
+              familias. Sin embargo, cada usuario es responsable de tomar las precauciones
+              necesarias antes de compartir datos personales o tomar decisiones de convivencia.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-xl font-semibold">8. Cambios en el servicio</h2>
+            <p className="mt-2 text-muted-foreground">
+              Vivily está en desarrollo. Podemos modificar funciones, añadir planes o ajustar
+              estos términos. Te avisaremos de cambios importantes y seguiremos respetando los
+              derechos adquiridos durante la lista de espera.
             </p>
           </section>
 
           <section>
             <h2 className="font-display text-xl font-semibold">9. Contacto</h2>
             <p className="mt-2 text-muted-foreground">
-              Si tienes dudas sobre esta política o sobre tus datos, escríbenos a{" "}
+              Si tienes dudas sobre estos términos, escríbenos a{" "}
               <a
                 href="mailto:hola@vivily.app"
                 className="text-primary underline underline-offset-2 hover:text-primary/80"
