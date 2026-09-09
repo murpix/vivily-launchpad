@@ -112,6 +112,70 @@ function scrollToWaitlist() {
   }
 }
 
+const carouselImages = [
+  {
+    src: carouselImage1,
+    alt: "Madre soltera riendo con sus dos hijos en el sofá de casa",
+  },
+  {
+    src: carouselImage2,
+    alt: "Dos familias monoparentales compartiendo una comida en una cocina luminosa",
+  },
+  {
+    src: carouselImage3,
+    alt: "Padre soltero jugando con su hija pequeña en el salón",
+  },
+  {
+    src: carouselImage4,
+    alt: "Madres monoparentales ayudando a sus hijos con los deberes juntas",
+  },
+];
+
+function ImageCarousel() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % carouselImages.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="anim-rise relative w-full" style={{ animationDelay: "0.45s" }}>
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[28px] ring-1 ring-border shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)]">
+        {carouselImages.map((img, i) => (
+          <img
+            key={img.alt}
+            src={img.src}
+            alt={img.alt}
+            width={1024}
+            height={1280}
+            loading={i === 0 ? "eager" : "lazy"}
+            className={`absolute inset-0 size-full object-cover transition-opacity duration-1000 ease-in-out ${
+              i === index ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+      </div>
+      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+        {carouselImages.map((img, i) => (
+          <button
+            key={img.alt}
+            type="button"
+            onClick={() => setIndex(i)}
+            aria-label={`Ver imagen ${i + 1} de ${carouselImages.length}`}
+            aria-current={i === index}
+            className={`size-2.5 rounded-full transition-colors ${
+              i === index ? "bg-primary" : "bg-white/70 hover:bg-white"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
@@ -256,19 +320,7 @@ function Index() {
               </div>
             </div>
 
-            <div
-              className="anim-rise relative"
-              style={{ animationDelay: "0.45s" }}
-            >
-              <img
-                src={communityImage}
-                alt="Grupo de personas de diferentes edades disfrutando juntas en un salón luminoso"
-                width={1024}
-                height={1280}
-                loading="eager"
-                className="aspect-[4/5] w-full rounded-[28px] object-cover ring-1 ring-border shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)]"
-              />
-            </div>
+            <ImageCarousel />
           </div>
         </section>
 
@@ -360,20 +412,6 @@ function Index() {
           </div>
         </section>
 
-        {/* Testimonio */}
-        <section className="mx-auto max-w-5xl px-6 pt-12">
-          <div className="rounded-[28px] bg-secondary/40 p-8 ring-1 ring-border backdrop-blur-md md:p-10">
-            <figure>
-              <blockquote className="font-display text-xl font-medium text-pretty md:text-2xl">
-                “Como madre soltera, Vivily me abrió la puerta a compartir hogar con otra familia
-                monoparental: más apoyo, menos gastos y una red de confianza para mis hijos.”
-              </blockquote>
-              <figcaption className="mt-4 text-sm text-muted-foreground">
-                Ana R. — madre soltera y beta tester
-              </figcaption>
-            </figure>
-          </div>
-        </section>
       </main>
 
       <footer className="relative z-20 mx-auto max-w-5xl px-6 pt-14 pb-10">
