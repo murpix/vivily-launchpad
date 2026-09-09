@@ -412,20 +412,6 @@ function Index() {
           </div>
         </section>
 
-        {/* Testimonio */}
-        <section className="mx-auto max-w-5xl px-6 pt-12">
-          <div className="rounded-[28px] bg-secondary/40 p-8 ring-1 ring-border backdrop-blur-md md:p-10">
-            <figure>
-              <blockquote className="font-display text-xl font-medium text-pretty md:text-2xl">
-                “Como madre soltera, Vivily me abrió la puerta a compartir hogar con otra familia
-                monoparental: más apoyo, menos gastos y una red de confianza para mis hijos.”
-              </blockquote>
-              <figcaption className="mt-4 text-sm text-muted-foreground">
-                Ana R. — madre soltera y beta tester
-              </figcaption>
-            </figure>
-          </div>
-        </section>
       </main>
 
       <footer className="relative z-20 mx-auto max-w-5xl px-6 pt-14 pb-10">
