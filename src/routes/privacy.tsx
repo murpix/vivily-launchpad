@@ -154,6 +154,9 @@ function PrivacyPage() {
             <Link to="/privacy" className="hover:text-foreground">
               Privacidad
             </Link>
+            <Link to="/terms" className="hover:text-foreground">
+              Términos
+            </Link>
           </div>
           <span className="text-[11px] text-muted-foreground">© 2026 Vivily</span>
         </div>
