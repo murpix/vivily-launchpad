@@ -6,6 +6,8 @@
 - [x] Proteger el formulario de waitlist: validación estricta de correos, anti-bot (honeypot), rate limiting por IP y bloqueo de correos temporales.
 
 ## Pendiente
+- [ ] Convertir la sección de preguntas frecuentes en acordeón desplegable.
+- [ ] Reordenar landing: hero → waitlist → cómo funciona → beneficios → preguntas frecuentes.
 - [ ] Configurar un dominio de email propio para poder enviar correos desde Vivily.
 - [ ] Enviar correo automático de confirmación a quien se une a la waitlist.
 - [ ] Enviar correo automático a cada email de la waitlist cuando Vivily esté lista, con enlace a la landing.
