@@ -441,7 +441,7 @@ function Index() {
               <WaitlistForm />
             </div>
           </div>
-
+        </section>
 
         {/* Cómo funciona */}
         <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
