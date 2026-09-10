@@ -456,47 +456,7 @@ function Index() {
           <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
             Preguntas frecuentes
           </h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <article className="rounded-[24px] bg-card/60 p-6 ring-1 ring-border backdrop-blur-md">
-              <h3 className="font-display text-lg font-semibold">
-                ¿Será de pago algo para los usuarios?
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground text-pretty">
-                No. Todo será gratuito y el acceso será libre. Unirse a la lista de espera y usar
-                las funciones principales de Vivily no tendrá coste.
-              </p>
-            </article>
-            <article className="rounded-[24px] bg-card/60 p-6 ring-1 ring-border backdrop-blur-md">
-              <h3 className="font-display text-lg font-semibold">
-                ¿Por qué solo familias monoparentales?
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground text-pretty">
-                Porque el objetivo principal al principio es este sector, que urge de un lugar
-                seguro y de apoyo. A lo largo del tiempo ampliaremos la app para incluir a más
-                perfiles que busquen compartir vivienda.
-              </p>
-            </article>
-            <article className="rounded-[24px] bg-card/60 p-6 ring-1 ring-border backdrop-blur-md">
-              <h3 className="font-display text-lg font-semibold">
-                ¿Me aseguráis una vivienda?
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground text-pretty">
-                No te aseguramos una vivienda. Solo somos un medio que te facilita encontrar un
-                compañero de piso que está en tu misma situación y busca los mismos intereses.
-                Eso facilita el acceso a una vivienda al ser dos personas, pero la decisión final
-                es vuestra.
-              </p>
-            </article>
-            <article className="rounded-[24px] bg-card/60 p-6 ring-1 ring-border backdrop-blur-md">
-              <h3 className="font-display text-lg font-semibold">
-                ¿Hay alguna ventaja por unirme antes?
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground text-pretty">
-                Sí. Las primeras personas que confíen en el proyecto serán las primeras en acceder
-                a todo lo nuevo que implementemos y contarán con soporte prioritario.
-              </p>
-            </article>
-          </div>
+          <FaqAccordion />
         </section>
 
         {/* Waitlist */}
