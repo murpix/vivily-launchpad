@@ -402,6 +402,8 @@ function Index() {
           </div>
         </section>
 
+
+
         {/* Cómo funciona */}
         <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
@@ -450,6 +452,14 @@ function Index() {
         </section>
 
         {/* Preguntas frecuentes */}
+        <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
+            Preguntas frecuentes
+          </h2>
+          <FaqAccordion />
+        </section>
+
+untas frecuentes */}
         <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
             Preguntas frecuentes
