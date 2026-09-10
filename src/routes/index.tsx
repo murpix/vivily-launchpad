@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   Loader2,
   ArrowDown,
+  ChevronDown,
 } from "lucide-react";
 
 import { joinWaitlist } from "@/lib/waitlist.functions";
