@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   Loader2,
   ArrowDown,
+  ChevronDown,
 } from "lucide-react";
 
 import { joinWaitlist } from "@/lib/waitlist.functions";
@@ -91,6 +92,29 @@ const benefits = [
     bg: "bg-accent",
     title: "Ahorro compartiendo vivienda",
     text: "Reduce gastos y accede a mejores hogares repartiendo alquiler, servicios y responsabilidades.",
+  },
+];
+
+const faqs = [
+  {
+    question: "¿Será de pago algo para los usuarios?",
+    answer:
+      "No. Todo será gratuito y el acceso será libre. Unirse a la lista de espera y usar las funciones principales de Vivily no tendrá coste.",
+  },
+  {
+    question: "¿Por qué solo familias monoparentales?",
+    answer:
+      "Porque el objetivo principal al principio es este sector, que urge de un lugar seguro y de apoyo. A lo largo del tiempo ampliaremos la app para incluir a más perfiles que busquen compartir vivienda.",
+  },
+  {
+    question: "¿Me aseguráis una vivienda?",
+    answer:
+      "No te aseguramos una vivienda. Solo somos un medio que te facilita encontrar un compañero de piso que está en tu misma situación y busca los mismos intereses. Eso facilita el acceso a una vivienda al ser dos personas, pero la decisión final es vuestra.",
+  },
+  {
+    question: "¿Hay alguna ventaja por unirme antes?",
+    answer:
+      "Sí. Las primeras personas que confíen en el proyecto serán las primeras en acceder a todo lo nuevo que implementemos y contarán con soporte prioritario.",
   },
 ];
 
@@ -266,6 +290,60 @@ function WaitlistForm() {
   );
 }
 
+function FaqAccordion() {
+  const [open, setOpen] = useState<Set<number>>(new Set());
+
+  function toggle(index: number) {
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  }
+
+  return (
+    <div className="mt-6 grid gap-3">
+      {faqs.map((item, index) => {
+        const isOpen = open.has(index);
+        return (
+          <article
+            key={item.question}
+            className="rounded-[24px] bg-card/60 ring-1 ring-border backdrop-blur-md"
+          >
+            <button
+              type="button"
+              onClick={() => toggle(index)}
+              aria-expanded={isOpen}
+              className="flex w-full items-center justify-between gap-4 p-6 text-left"
+            >
+              <h3 className="font-display text-lg font-semibold">{item.question}</h3>
+              <ChevronDown
+                className={`size-5 shrink-0 text-primary transition-transform duration-200 ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+                aria-hidden
+              />
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-out ${
+                isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <p className="px-6 pb-6 text-sm text-muted-foreground text-pretty">
+                {item.answer}
+              </p>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
 function Index() {
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-background text-foreground">
@@ -324,6 +402,47 @@ function Index() {
           </div>
         </section>
 
+        {/* Waitlist */}
+        <section
+          id="waitlist"
+          className="mx-auto max-w-5xl px-6 pt-12 scroll-mt-24"
+        >
+          <div className="grid items-start gap-8 md:grid-cols-2">
+            <div>
+              <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
+                Accede antes que nadie
+              </h2>
+              <p className="mt-2 text-base text-muted-foreground text-pretty">
+                Déjanos tu correo y te avisamos en cuanto Vivily esté disponible para familias
+                monoparentales. Los primeros en la lista recibirán acceso prioritario y funciones
+                exclusivas.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                  <span>Acceso anticipado a la app.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                  <span>Consejos y recursos para familias monoparentales.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                  <span>Sin spam, solo lo importante.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="rounded-[28px] bg-card/60 p-6 shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)] ring-1 ring-border backdrop-blur-xl">
+              <h3 className="text-sm font-bold">Únete a la waitlist</h3>
+              <p className="mt-1 text-[13px] text-muted-foreground text-pretty">
+                Completa el formulario y guarda tu lugar.
+              </p>
+              <WaitlistForm />
+            </div>
+          </div>
+        </section>
+
         {/* Cómo funciona */}
         <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
@@ -376,88 +495,7 @@ function Index() {
           <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
             Preguntas frecuentes
           </h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <article className="rounded-[24px] bg-card/60 p-6 ring-1 ring-border backdrop-blur-md">
-              <h3 className="font-display text-lg font-semibold">
-                ¿Será de pago algo para los usuarios?
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground text-pretty">
-                No. Todo será gratuito y el acceso será libre. Unirse a la lista de espera y usar
-                las funciones principales de Vivily no tendrá coste.
-              </p>
-            </article>
-            <article className="rounded-[24px] bg-card/60 p-6 ring-1 ring-border backdrop-blur-md">
-              <h3 className="font-display text-lg font-semibold">
-                ¿Por qué solo familias monoparentales?
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground text-pretty">
-                Porque el objetivo principal al principio es este sector, que urge de un lugar
-                seguro y de apoyo. A lo largo del tiempo ampliaremos la app para incluir a más
-                perfiles que busquen compartir vivienda.
-              </p>
-            </article>
-            <article className="rounded-[24px] bg-card/60 p-6 ring-1 ring-border backdrop-blur-md">
-              <h3 className="font-display text-lg font-semibold">
-                ¿Me aseguráis una vivienda?
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground text-pretty">
-                No te aseguramos una vivienda. Solo somos un medio que te facilita encontrar un
-                compañero de piso que está en tu misma situación y busca los mismos intereses.
-                Eso facilita el acceso a una vivienda al ser dos personas, pero la decisión final
-                es vuestra.
-              </p>
-            </article>
-            <article className="rounded-[24px] bg-card/60 p-6 ring-1 ring-border backdrop-blur-md">
-              <h3 className="font-display text-lg font-semibold">
-                ¿Hay alguna ventaja por unirme antes?
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground text-pretty">
-                Sí. Las primeras personas que confíen en el proyecto serán las primeras en acceder
-                a todo lo nuevo que implementemos y contarán con soporte prioritario.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        {/* Waitlist */}
-        <section
-          id="waitlist"
-          className="mx-auto max-w-5xl px-6 pt-12 scroll-mt-24"
-        >
-          <div className="grid items-start gap-8 md:grid-cols-2">
-            <div>
-              <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
-                Accede antes que nadie
-              </h2>
-              <p className="mt-2 text-base text-muted-foreground text-pretty">
-                Déjanos tu correo y te avisamos en cuanto Vivily esté disponible para familias
-                monoparentales. Los primeros en la lista recibirán acceso prioritario y funciones
-                exclusivas.
-              </p>
-              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
-                  <span>Acceso anticipado a la app.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
-                  <span>Consejos y recursos para familias monoparentales.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
-                  <span>Sin spam, solo lo importante.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="rounded-[28px] bg-card/60 p-6 shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)] ring-1 ring-border backdrop-blur-xl">
-              <h3 className="text-sm font-bold">Únete a la waitlist</h3>
-              <p className="mt-1 text-[13px] text-muted-foreground text-pretty">
-                Completa el formulario y guarda tu lugar.
-              </p>
-              <WaitlistForm />
-            </div>
-          </div>
+          <FaqAccordion />
         </section>
 
       </main>
