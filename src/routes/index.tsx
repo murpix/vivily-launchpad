@@ -95,6 +95,29 @@ const benefits = [
   },
 ];
 
+const faqs = [
+  {
+    question: "¿Será de pago algo para los usuarios?",
+    answer:
+      "No. Todo será gratuito y el acceso será libre. Unirse a la lista de espera y usar las funciones principales de Vivily no tendrá coste.",
+  },
+  {
+    question: "¿Por qué solo familias monoparentales?",
+    answer:
+      "Porque el objetivo principal al principio es este sector, que urge de un lugar seguro y de apoyo. A lo largo del tiempo ampliaremos la app para incluir a más perfiles que busquen compartir vivienda.",
+  },
+  {
+    question: "¿Me aseguráis una vivienda?",
+    answer:
+      "No te aseguramos una vivienda. Solo somos un medio que te facilita encontrar un compañero de piso que está en tu misma situación y busca los mismos intereses. Eso facilita el acceso a una vivienda al ser dos personas, pero la decisión final es vuestra.",
+  },
+  {
+    question: "¿Hay alguna ventaja por unirme antes?",
+    answer:
+      "Sí. Las primeras personas que confíen en el proyecto serán las primeras en acceder a todo lo nuevo que implementemos y contarán con soporte prioritario.",
+  },
+];
+
 function Logo() {
   return (
     <div className="flex items-center gap-2">
