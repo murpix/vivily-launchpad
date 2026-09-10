@@ -290,6 +290,62 @@ function WaitlistForm() {
   );
 }
 
+function FaqAccordion() {
+  const [open, setOpen] = useState<Set<number>>(new Set());
+
+  function toggle(index: number) {
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  }
+
+  return (
+    <div className="mt-6 grid gap-3">
+      {faqs.map((item, index) => {
+        const isOpen = open.has(index);
+        return (
+          <article
+            key={item.question}
+            className="rounded-[24px] bg-card/60 ring-1 ring-border backdrop-blur-md"
+          >
+            <button
+              type="button"
+              onClick={() => toggle(index)}
+              aria-expanded={isOpen}
+              className="flex w-full items-center justify-between gap-4 p-6 text-left"
+            >
+              <h3 className="font-display text-lg font-semibold">{item.question}</h3>
+              <ChevronDown
+                className={`size-5 shrink-0 text-primary transition-transform duration-200 ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+                aria-hidden
+              />
+            </button>
+            <div
+              className={`grid overflow-hidden transition-all duration-200 ease-out ${
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="min-h-0">
+                <p className="px-6 pb-6 text-sm text-muted-foreground text-pretty">
+                  {item.answer}
+                </p>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
 function Index() {
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-background text-foreground">
