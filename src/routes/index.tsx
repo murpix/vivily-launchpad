@@ -329,15 +329,13 @@ function FaqAccordion() {
               />
             </button>
             <div
-              className={`grid overflow-hidden transition-all duration-200 ease-out ${
-                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              className={`overflow-hidden transition-all duration-300 ease-out ${
+                isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
-              <div className="min-h-0">
-                <p className="px-6 pb-6 text-sm text-muted-foreground text-pretty">
-                  {item.answer}
-                </p>
-              </div>
+              <p className="px-6 pb-6 text-sm text-muted-foreground text-pretty">
+                {item.answer}
+              </p>
             </div>
           </article>
         );
