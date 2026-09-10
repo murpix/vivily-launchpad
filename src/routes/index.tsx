@@ -402,6 +402,45 @@ function Index() {
           </div>
         </section>
 
+        {/* Waitlist */}
+        <section
+          id="waitlist"
+          className="mx-auto max-w-5xl px-6 pt-12 scroll-mt-24"
+        >
+          <div className="grid items-start gap-8 md:grid-cols-2">
+            <div>
+              <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
+                Accede antes que nadie
+              </h2>
+              <p className="mt-2 text-base text-muted-foreground text-pretty">
+                Déjanos tu correo y te avisamos en cuanto Vivily esté disponible para familias
+                monoparentales. Los primeros en la lista recibirán acceso prioritario y funciones
+                exclusivas.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                  <span>Acceso anticipado a la app.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                  <span>Consejos y recursos para familias monoparentales.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+                  <span>Sin spam, solo lo importante.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="rounded-[28px] bg-card/60 p-6 shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)] ring-1 ring-border backdrop-blur-xl">
+              <h3 className="text-sm font-bold">Únete a la waitlist</h3>
+              <p className="mt-1 text-[13px] text-muted-foreground text-pretty">
+                Completa el formulario y guarda tu lugar.
+              </p>
+              <WaitlistForm />
+            </div>
+          </div>
 
 
         {/* Cómo funciona */}
@@ -451,62 +490,7 @@ function Index() {
           </div>
         </section>
 
-        {/* Preguntas frecuentes */}
-        <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
-          <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
-            Preguntas frecuentes
-          </h2>
-          <FaqAccordion />
-        </section>
-
-untas frecuentes */}
-        <section className="mx-auto max-w-5xl px-6 pt-12 pb-2">
-          <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
-            Preguntas frecuentes
-          </h2>
-          <FaqAccordion />
-        </section>
-
-        {/* Waitlist */}
-        <section
-          id="waitlist"
-          className="mx-auto max-w-5xl px-6 pt-12 scroll-mt-24"
-        >
-          <div className="grid items-start gap-8 md:grid-cols-2">
-            <div>
-              <h2 className="font-display text-2xl font-semibold tracking-tight text-balance md:text-3xl">
-                Accede antes que nadie
-              </h2>
-              <p className="mt-2 text-base text-muted-foreground text-pretty">
-                Déjanos tu correo y te avisamos en cuanto Vivily esté disponible para familias
-                monoparentales. Los primeros en la lista recibirán acceso prioritario y funciones
-                exclusivas.
-              </p>
-              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
-                  <span>Acceso anticipado a la app.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
-                  <span>Consejos y recursos para familias monoparentales.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
-                  <span>Sin spam, solo lo importante.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="rounded-[28px] bg-card/60 p-6 shadow-[0_24px_60px_-30px_oklch(0.52_0.075_160/0.5)] ring-1 ring-border backdrop-blur-xl">
-              <h3 className="text-sm font-bold">Únete a la waitlist</h3>
-              <p className="mt-1 text-[13px] text-muted-foreground text-pretty">
-                Completa el formulario y guarda tu lugar.
-              </p>
-              <WaitlistForm />
-            </div>
-          </div>
-        </section>
+      </section>
 
       </main>
 
