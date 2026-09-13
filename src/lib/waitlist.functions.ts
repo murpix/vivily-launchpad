@@ -3,7 +3,18 @@ import { getRequest } from "@tanstack/react-start/server";
 import { joinWaitlistInputSchema, isDisposableEmail, normalizeEmail } from "./waitlist.server";
 
 const MAX_ATTEMPTS_PER_WINDOW = 5;
+const MAX_GLOBAL_ATTEMPTS_PER_WINDOW = 120;
 const WINDOW_MINUTES = 15;
+
+// Store a one-way hash of the IP so raw addresses never land in the database.
+async function hashIp(ip: string): Promise<string> {
+  const pepper = process.env["LOVABLE_CRON_SECRET"] ?? "vivily-waitlist";
+  const bytes = new TextEncoder().encode(`${pepper}:${ip}`);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
 
 export const joinWaitlist = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => {
