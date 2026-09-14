@@ -48,13 +48,15 @@ export const joinWaitlist = createServerFn({ method: "POST" })
     }
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const ipHash = await hashIp(clientIp);
+    const since = new Date(Date.now() - WINDOW_MINUTES * 60 * 1000).toISOString();
 
     // Rate limit: count recent attempts from this IP.
     const { count, error: countError } = await supabaseAdmin
       .from("waitlist_attempts")
       .select("*", { count: "exact", head: true })
-      .eq("ip", clientIp)
-      .gte("attempted_at", new Date(Date.now() - WINDOW_MINUTES * 60 * 1000).toISOString());
+      .eq("ip", ipHash)
+      .gte("attempted_at", since);
 
     if (countError) {
       console.error("Rate limit check failed:", countError);
@@ -62,14 +64,27 @@ export const joinWaitlist = createServerFn({ method: "POST" })
     }
 
     if ((count ?? 0) >= MAX_ATTEMPTS_PER_WINDOW) {
-      await supabaseAdmin.from("waitlist_attempts").insert({ ip: clientIp, email, blocked: true });
+      await supabaseAdmin.from("waitlist_attempts").insert({ ip: ipHash, email, blocked: true });
       return { ok: false, error: "Has intentado demasiadas veces. Espera unos minutos." };
+    }
+
+    // Global flood guard: protects against distributed bot bursts.
+    const { count: globalCount } = await supabaseAdmin
+      .from("waitlist_attempts")
+      .select("*", { count: "exact", head: true })
+      .gte("attempted_at", since);
+
+    if ((globalCount ?? 0) >= MAX_GLOBAL_ATTEMPTS_PER_WINDOW) {
+      return {
+        ok: false,
+        error: "Estamos recibiendo muchas solicitudes ahora mismo. Inténtalo en unos minutos.",
+      };
     }
 
     // Record this attempt before trying the insert.
     const { error: attemptError } = await supabaseAdmin
       .from("waitlist_attempts")
-      .insert({ ip: clientIp, email, blocked: false });
+      .insert({ ip: ipHash, email, blocked: false });
 
     if (attemptError) {
       console.error("Failed to record waitlist attempt:", attemptError);
